@@ -37,6 +37,14 @@ with THreadingSimpleXMLRPCServer(('localhost', 3000),
     # Function to create a new note/topic and save it to database
     def saveNote(topic, note, text, date):
         try:
+            if topic.strip() == "" or note.strip() == "" or text.strip() == "":
+                return "Topic, Note or Text cannot be empty"
+            elif not isinstance(topic, str) or not isinstance(note, str) or not isinstance(text, str):
+                return "Topic, Note and Text should be strings"
+            try:
+                datetime.datetime.strptime(date, "%d-%m-%Y %H:%M:%S")
+            except ValueError:
+                return "Incorrect date format, should be DD-MM-YYYY HH:MM:SS"
             root = tree.getroot()
             temptopic = None
             for temp in root.findall('topic'):
@@ -60,6 +68,11 @@ with THreadingSimpleXMLRPCServer(('localhost', 3000),
     # Function to get notes by topic
     def getnotes(topic):
         try:
+            if topic.strip() == "":
+                return "Topic cannot be empty"
+            elif not isinstance(topic, str):
+                return "Topic should be a string"
+            
             root = tree.getroot()
             notes = []
             for tempname in root.findall('topic'):
@@ -89,6 +102,11 @@ with THreadingSimpleXMLRPCServer(('localhost', 3000),
     # Function to get wikipedia information
     def getwikipedia(topic):
         try:
+            if topic.strip() == "":
+                return "Topic cannot be empty"
+            elif not isinstance(topic, str):
+                return "Topic should be a string"
+            
             URL = "https://en.wikipedia.org/w/api.php"
             PARAMS = {
                 "action": "opensearch",

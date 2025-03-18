@@ -14,21 +14,21 @@ def AddNote():
         text = ""
         while check < 3:
             if len(topic.strip()) == 0:
-                topic = input("Enter topic: ")
+                topic = str(input("Enter topic: "))
                 if len(topic.strip()) != 0:
                     check +=1
                 else:
                     print("Topic cannot be empty")
                 print()
             if len(note.strip()) == 0:
-                note = input("Enter note: ")
+                note = str(input("Enter note: "))
                 if len(note.strip()) != 0:
                     check +=1
                 else:
                     print("Note cannot be empty")
                 print()
             if len(text.strip()) == 0:
-                text = input("Enter text: ").strip()
+                text = str(input("Enter text: "))
                 if len(text.strip()) != 0:
                     check +=1
                 else:
@@ -45,7 +45,7 @@ def AddNote():
 # Function to get notes by topic
 def getNote():
     try:
-        topic = input("Enter topic or press enter to exit: ")
+        topic = str(input("Enter topic or press enter to exit: "))
         print()
         if topic == "":
             return
@@ -61,7 +61,7 @@ def getNote():
 # Function to get Wikipedia information
 def wikipediainfo():
     try:
-        topic = input ("Enter topic to search on Wikipedia or press enter to exit: ")
+        topic = str(input ("Enter topic to search on Wikipedia or press enter to exit: "))
         print()
         if topic == "":
             return
@@ -79,16 +79,15 @@ def displayTopics():
             print(topics)
         elif len(topics) == 0:
             print("No topics found")
-            
+            return False
         else:
             print("Your topics: \n")
             for topic in topics:
                 print(topic)
         print()
+        return True
     except Exception as e:
         print(f"Error getting topics: {e}")
-        return False
-    return True
 # Main function while loops until user exits
 def main():
     while True:
@@ -100,14 +99,14 @@ def main():
         choice = input("Enter choice: ")
         print()
         if choice == '1':
-            if displayTopics():
-                AddNote()
+            displayTopics()
+            AddNote()
         elif choice == '2':
             if displayTopics():
                 getNote()
         elif choice == '3':
-            if displayTopics():
-                wikipediainfo()
+            displayTopics()
+            wikipediainfo()
         elif choice == '0':
             break
         else:
