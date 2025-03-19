@@ -8,4 +8,6 @@ The server-side script that hosts the XML-RPC server. It handles client requests
 ## 3. <code> database.xml </code>
 This file serves as a database for storing notes. It contains structured example entries demonstrating how data is stored and managed within the system. **This is part of the assignment**
 ## 4. <code> multiclient.py </code>
-This script server to test server and database by simulating multiple concurrent client connections. It tests different server by creating different calls and checking if the response is correct. In addition, it checkes error handling and invalid calls. **This is not part of the assignment and should be left out of evaluation**
+This script serves to test the server and database by simulating multiple concurrent client connections. It tests different server functions by creating various calls and checking if the responses are correct. Additionally, it checks error handling and invalid calls. **This is not part of the assignment and should be left out of evaluation.**
+
+
