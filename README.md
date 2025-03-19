@@ -1,0 +1,1 @@
+This repository was created for Assignment 2. Client, Database and server are part of the assigment, however multiclient python file is not and was only created to test threading capabilities of the server.
