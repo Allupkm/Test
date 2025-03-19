@@ -2,7 +2,7 @@ import xmlrpc.client
 import datetime
 
 
-server = xmlrpc.client.ServerProxy('http://localhost:3000/RPC2')
+server = xmlrpc.client.ServerProxy('http://localhost:3000/RPC2') #Connect to server
 
 
 # Function to add a note
@@ -12,7 +12,7 @@ def AddNote():
         topic = ""
         note = ""
         text = ""
-        while check < 3:
+        while check < 3: #Check if input is valid
             if len(topic.strip()) == 0:
                 topic = str(input("Enter topic: "))
                 if len(topic.strip()) != 0:
@@ -35,8 +35,8 @@ def AddNote():
                     print("Text cannot be empty")
                 print()
             
-        date = datetime.datetime.now().strftime("%d-%m-%Y %H:%M:%S")
-        response = server.saveNote(topic, note, text, date)
+        date = datetime.datetime.now().strftime("%d/%m/%Y %H:%M:%S")
+        response = server.saveNote(topic, note, text, date) #Save the note
         print(response)
         print()
     except Exception as e:
@@ -50,10 +50,10 @@ def getNote():
         if topic == "":
             return
         notes = server.getnotes(topic)
-        if type(notes) == str:
+        if type(notes) == str: #Check if there are any notes
             print(notes)
         else:
-            for note in notes:
+            for note in notes: #Print all notes
                 print(f"Name: {note[0]} \nText: {note[1]} \nDate:{note[2]} \n")
     except Exception as e:
         print(f"Error getting notes: {e}")
@@ -65,7 +65,7 @@ def wikipediainfo():
         print()
         if topic == "":
             return
-        url = server.getwikipedia(topic)
+        url = server.getwikipedia(topic) #Get wikipedia information
         print(url)
     except Exception as e:
         print(f"Error getting Wikipedia information: {e}")
@@ -74,14 +74,14 @@ def wikipediainfo():
 # Function to display topics and a check to skip next function if there are no connection to the server
 def displayTopics():
     try:
-        topics = server.getTopics()
-        if type(topics) == str:
-            print(topics)
-        elif len(topics) == 0:
+        topics = server.getTopics() #Get all topics
+        if type(topics) == str:#Check if there are any topics
+            print(topics) 
+        elif len(topics) == 0: #If there are no topics
             print("No topics found")
             return False
         else:
-            print("Your topics: \n")
+            print("Your topics: \n") #Print all topics
             for topic in topics:
                 print(topic)
         print()
@@ -91,7 +91,7 @@ def displayTopics():
 # Main function while loops until user exits
 def main():
     while True:
-        print("Menu:")
+        print("Menu:") #Menu
         print("1. Add a note")
         print("2. Get notes by topic")
         print("3. Get Wikipedia information to a topic")
@@ -99,8 +99,8 @@ def main():
         choice = input("Enter choice: ")
         print()
         if choice == '1':
-            displayTopics()
-            AddNote()
+            displayTopics() #Check if there are any topics
+            AddNote() #Add a note
         elif choice == '2':
             if displayTopics():
                 getNote()

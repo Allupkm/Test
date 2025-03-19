@@ -77,7 +77,7 @@ def TestAddNote():
         topic = f"Topic-{random.randint(1, 10)}"
         note = f"Note-{random.randint(1, 100)}"
         text = f"Text-{random.randint(1, 100)}"
-        date = datetime.datetime.now().strftime("%d-%m-%Y %H:%M:%S")
+        date = datetime.datetime.now().strftime("%d/%m/%Y %H:%M:%S")
         
         result = call_with_retry('saveNote', topic, note, text, date)
         
