@@ -1,1 +1,1 @@
-This repository was created for Assignment 2. Client, Database and server are part of the assigment, however multiclient python file is not and was only created to test threading capabilities of the server.
+This repository was created for Assingment 2. This includes client.py, server.py and database.xml (Which now has examples inside to show how the database looks like). The multiclient.py file is not part of the assignment and should be not taken account when looking at assignment. This was created to test 
